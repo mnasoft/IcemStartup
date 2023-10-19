@@ -7,9 +7,3 @@ mess "\n\n\n"
 mess "=========================\n"
 mess "source $Tcl_User_Root/PkgLoader/PkgLoader.tcl\n"
 mess "=========================\n"
-mess "package require MnasIcemUtils 1.0 \n"
-mess "=========================\n"
-mess "package require N70_base 1.0 \n"
-mess "=========================\n"
-
-
