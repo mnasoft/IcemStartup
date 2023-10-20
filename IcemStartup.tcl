@@ -1,4 +1,4 @@
-# source $env(TCL_HOME)/MnasIcemUtils/startup.tcl
+# source $env(TCL_HOME)/IcemStartup/IcemStartup.tcl
 
 mess "\nStart Loading IcemStartup.tcl ...\n"
 

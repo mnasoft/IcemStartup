@@ -1,7 +1,6 @@
-# source $env(TCL_HOME)/MnasIcemUtils/startup.tcl
+# source $env(TCL_HOME)/IcemStartup/IcemStartup_new.tcl
 
-mess "\nStart Loading IcemStartup.tcl\n"
-
+mess "\nStart Loading IcemStartup_new ... \n"
 
 set script_path [ file dirname [ file normalize [ info script ] ] ]
 mess "\n\n"
@@ -59,3 +58,5 @@ proc load_all_files {files} {
 
 
 load_all_files [ findFiles $Tcl_User_Root "*.tcl" ]
+
+mess "\nIcemStartup_new - LOADED.\n"
