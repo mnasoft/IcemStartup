@@ -1,8 +1,11 @@
 # source $env(TCL_HOME)/IcemStartup/IcemRequire.tcl
-mess "\nStart Loading IcemRequire.tcl ...\n"
+
+mmsg_start
+
+addRelToPkgLoaderDirs ICEM
+createPkgIndex
 
 package require MnasIcemUtils
 package require N70_base
 
-mess "\nIcemRequire.tcl - LOADED\n"
-
+mmsg_finish
