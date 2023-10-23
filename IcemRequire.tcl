@@ -1,16 +1,23 @@
 # source $env(TCL_HOME)/IcemStartup/IcemRequire.tcl
 
+# Данный файл выполняется в графическом пространстве имен.
+
 mmsg_start
 
-addRelToPkgLoaderDirs ICEM
-addToPkgLoaderDirs MnasTkUtils
+proc loadInGuiSpace {} {
+    # Добавлям пути в переменную PkgLoaderDirs пакета PkgLoader.
+    addRelToPkgLoaderDirs ICEM
+    addToPkgLoaderDirs MnasTkUtils
+# Создаем файлы для загрузки пакетов по требованию.
+    createPkgIndex
+# Загружаем пакеты
+    package require MnasIcemUtils
+    package require N70_base
+    package require MnasTkUtils
+# Загружаем меню для WindowNavigator из пакета MnasTkUtils
+    menu_WindowNavigator
+}
 
-createPkgIndex
-
-package require MnasIcemUtils
-package require N70_base
-package require MnasTkUtils
-
-menu_WindowNavigator
+loadInGuiSpace
 
 mmsg_finish
