@@ -60,11 +60,6 @@ goto IcemRun
 set ICEMCFD_BAT=%selected_val%
 echo 1 ICEMCFD_BAT=%ICEMCFD_BAT%
 
-for %%i in ("%~dp0\..") do (
-    set "parent_dir=%%~fi"
-)
-set "parent_dir=!parent_dir:\=/!"
-
 echo  "IcemStartup" cmd.exe /K ""%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\icemcfd" -script "%~dp0IcemStartup.tcl""
 pause 
 start "IcemStartup" cmd.exe /K ""%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\icemcfd" -script "%~dp0IcemStartup.tcl""
@@ -83,5 +78,4 @@ echo Ошибка! Неправильно выбран номер
 pause
 
 :Exit
-endlocal & set "TCL_HOME=%parent_dir%"
 exit
