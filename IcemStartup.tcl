@@ -17,7 +17,7 @@ proc getAncestorDir {level} {
         set ancestorDir [file dirname $ancestorDir]
     }
     # Возвращаем абсолютный путь к ancestorDir
-    return [file normalize $ancestorDir]}
+    return [file normalize $ancestorDir] }
 
 # Загружает некоторые файлы в графическое пространство имен.
 proc loadToGuiSpace {} {
@@ -26,7 +26,7 @@ proc loadToGuiSpace {} {
     ic_gui_set eval source $tcl_user_root/IcemStartup/IcemRequire.tcl
 }
 
-loadInGuiSpace
+loadToGuiSpace
 
 mess "IcemStartup.tcl - LOADED\n"
 
