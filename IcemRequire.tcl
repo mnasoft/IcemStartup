@@ -14,7 +14,9 @@ proc loadInGuiSpace {} {
     package require MnasIcemUtils
     package require N70_base
     package require MnasTkUtils
-# Загружаем меню для WindowNavigator из пакета MnasTkUtils
+    # Загружаем меню для WindowNavigator из пакета MnasTkUtils
+    menu_MNAS
+    menu_N70
     menu_WindowNavigator
 }
 
