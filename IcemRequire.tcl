@@ -6,10 +6,10 @@ mmsg_start
 
 proc loadInGuiSpace {} {
     # Добавлям пути в переменную PkgLoaderDirs пакета PkgLoader.
-    addRelToPkgLoaderDirs ICEM
-    addToPkgLoaderDirs MnasTkUtils
+    PkgLoader::addSubDir ICEM
+    PkgLoader::addDir MnasTkUtils
 # Создаем файлы для загрузки пакетов по требованию.
-    createPkgIndex
+    PkgLoader::createPkgIndex
 # Загружаем пакеты
     package require MnasIcemUtils
     package require N70_base
