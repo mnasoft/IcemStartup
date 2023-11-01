@@ -8,13 +8,16 @@ proc loadInGuiSpace {} {
     # Добавлям пути в переменную PkgLoaderDirs пакета PkgLoader.
     PkgLoader::addSubDir ICEM
     PkgLoader::addDir MnasTkUtils
-# Создаем файлы для загрузки пакетов по требованию.
+
+    # Создаем файлы для загрузки пакетов по требованию.
     PkgLoader::createPkgIndex
-# Загружаем пакеты
+
+    # Загружаем пакеты
     package require MnasIcemUtils
     package require N70_base
     package require MnasTkUtils
-    # Загружаем меню для WindowNavigator из пакета MnasTkUtils
+
+    # Загружаем соответствующие меню
     menu_MNAS
     menu_N70
     menu_WindowNavigator
