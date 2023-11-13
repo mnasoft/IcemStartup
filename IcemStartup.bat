@@ -1,8 +1,9 @@
+chcp 1251
 @echo off
 
 setlocal EnableDelayedExpansion
 
-:: РџРѕР»СѓС‡РёС‚СЊ РІСЃРµ РїРµСЂРµРјРµРЅРЅС‹Рµ РѕРєСЂСѓР¶РµРЅРёСЏ, РЅР°С‡РёРЅР°СЋС‰РёРµСЃСЏ СЃ ICEMCFD_ROOT
+:: Получить все переменные окружения, начинающиеся с ICEMCFD_ROOT
 set "count=0"
 for /f "tokens=1,* delims==" %%a in ('set ICEMCFD_ROOT 2^>nul') do (
     set /a count+=1
@@ -11,7 +12,7 @@ for /f "tokens=1,* delims==" %%a in ('set ICEMCFD_ROOT 2^>nul') do (
 )
 
 IF %count% EQU 0 (
-    echo ICEMCFD_ROOT РЅРµ РѕРїСЂРµРґРµР»РµРЅР°
+    echo ICEMCFD_ROOT не определена
 	pause
     goto Exit	
 ) ELSE  IF %count% EQU 1 (	
@@ -20,10 +21,9 @@ IF %count% EQU 0 (
 	goto Icem2
 )
 
-
 :Icem1
 
-echo ICEMCFD_ROOT РѕРґРЅР°:
+echo ICEMCFD_ROOT одна:
 echo !var[%count%]! = !val[%count%]!
 set "selected_var=!var[%count%]!"
 set "selected_val=!val[%count%]!"
@@ -32,26 +32,26 @@ goto IcemRun
 
 :Icem2
 
-:: Р’С‹РІРµСЃС‚Рё СЃРїРёСЃРѕРє РїРµСЂРµРјРµРЅРЅС‹С… РѕРєСЂСѓР¶РµРЅРёСЏ
-echo Р’С‹Р±РµСЂРёС‚Рµ РѕРґРЅСѓ РёР· РїРµСЂРµРјРµРЅРЅС‹С… РѕРєСЂСѓР¶РµРЅРёСЏ ICEMCFD_ROOT:
+:: Вывести список переменных окружения
+echo Выберите одну из переменных окружения ICEMCFD_ROOT:
 for /l %%i in (1,1,!count!) do (
 	  echo [%%i] !var[%%i]!
 )
 
-:: Р—Р°РїСЂРѕСЃРёС‚СЊ Сѓ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІС‹Р±РѕСЂ РїРµСЂРµРјРµРЅРЅРѕР№ РѕРєСЂСѓР¶РµРЅРёСЏ
-set /p choice=Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РїРµСЂРµРјРµРЅРЅРѕР№ РѕРєСЂСѓР¶РµРЅРёСЏ: 
+:: Запросить у пользователя выбор переменной окружения
+set /p choice=Введите номер переменной окружения: 
 
 rem echo choice=%choice%
 
 IF %choice% GTR %count% goto Error
 IF %choice% LSS 1 goto Error  
 
-:: РЎРѕС…СЂР°РЅРёС‚СЊ РІС‹Р±СЂР°РЅРЅСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ РѕРєСЂСѓР¶РµРЅРёСЏ РІ РЅРѕРІСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ
+:: Сохранить выбранную переменную окружения в новую переменную
 set "selected_var=!var[%choice%]!"
 set "selected_val=!val[%choice%]!"
 
-:: Р’С‹РІРµСЃС‚Рё РІС‹Р±СЂР°РЅРЅСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ РѕРєСЂСѓР¶РµРЅРёСЏ
-echo Р’С‹ РІС‹Р±СЂР°Р»Рё !selected_var! СЃРѕ Р·РЅР°С‡РµРЅРёРµРј !selected_val!
+:: Вывести выбранную переменную окружения
+echo Вы выбрали !selected_var! со значением !selected_val!
 
 goto IcemRun
 
@@ -64,7 +64,7 @@ echo  "IcemStartup" cmd.exe /K ""%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\icemcfd" -sc
 pause 
 start "IcemStartup" cmd.exe /K ""%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\icemcfd" -script "%~dp0IcemStartup.tcl""
 
-:: РўР°Рє С‚РѕР¶Рµ СЂР°Р±РѕС‚Р°РµС‚
+:: Так тоже работает
 rem start "IcemStartup" /D "%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\" icemcfd -script "%~dp0IcemStartup.tcl"
 rem "%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\icemcfd" -script "%~dp0IcemStartup.tcl"
 
@@ -74,7 +74,7 @@ rem "%ICEMCFD_BAT%" -script "%TCL_HOME%/IcemStartup/IcemStartup.tcl"
 goto Exit
 
 :Error
-echo РћС€РёР±РєР°! РќРµРїСЂР°РІРёР»СЊРЅРѕ РІС‹Р±СЂР°РЅ РЅРѕРјРµСЂ
+echo Ошибка! Неправильно выбран номер
 pause
 
 :Exit
