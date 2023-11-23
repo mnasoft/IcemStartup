@@ -3,7 +3,7 @@ chcp 1251
 
 setlocal EnableDelayedExpansion
 
-:: Получить все переменные окружения, начинающиеся с ICEMCFD_ROOT
+:: Getting all evironment variable strting with ICEMCFD_ROOT
 set "count=0"
 for /f "tokens=1,* delims==" %%a in ('set ICEMCFD_ROOT 2^>nul') do (
     set /a count+=1
@@ -12,7 +12,7 @@ for /f "tokens=1,* delims==" %%a in ('set ICEMCFD_ROOT 2^>nul') do (
 )
 
 IF %count% EQU 0 (
-    echo ICEMCFD_ROOT не определена
+    echo ICEMCFD_ROOT not defined
 	pause
     goto Exit	
 ) ELSE  IF %count% EQU 1 (	
@@ -23,7 +23,7 @@ IF %count% EQU 0 (
 
 :Icem1
 
-echo ICEMCFD_ROOT одна:
+:: Single variable ICEMCFD_ROOT:
 echo !var[%count%]! = !val[%count%]!
 set "selected_var=!var[%count%]!"
 set "selected_val=!val[%count%]!"
@@ -32,26 +32,26 @@ goto IcemRun
 
 :Icem2
 
-:: Вывести список переменных окружения
-echo Выберите одну из переменных окружения ICEMCFD_ROOT:
+:: Output to console list of all environment variable starting with ICEMCFD_ROOT
+echo Select from list one of environment variable ICEMCFD_ROOT:
 for /l %%i in (1,1,!count!) do (
 	  echo [%%i] !var[%%i]!
 )
 
-:: Запросить у пользователя выбор переменной окружения
-set /p choice=Введите номер переменной окружения: 
+:: Request from user number of environment variable
+set /p choice=Enter number of environment variable: 
 
 rem echo choice=%choice%
 
 IF %choice% GTR %count% goto Error
 IF %choice% LSS 1 goto Error  
 
-:: Сохранить выбранную переменную окружения в новую переменную
+:: Saving selected environment variable to new variable
 set "selected_var=!var[%choice%]!"
 set "selected_val=!val[%choice%]!"
 
-:: Вывести выбранную переменную окружения
-echo Вы выбрали !selected_var! со значением !selected_val!
+:: Output to console selected variable
+echo YOU select !selected_var! whith value !selected_val!
 
 goto IcemRun
 
@@ -61,10 +61,10 @@ set ICEMCFD_BAT=%selected_val%
 echo 1 ICEMCFD_BAT=%ICEMCFD_BAT%
 
 echo  "IcemStartup" cmd.exe /K ""%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\icemcfd" -script "%~dp0IcemStartup.tcl""
-pause 
+:: pause 
 start "IcemStartup" cmd.exe /K ""%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\icemcfd" -script "%~dp0IcemStartup.tcl""
 
-:: Так тоже работает
+:: This way workable to.
 rem start "IcemStartup" /D "%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\" icemcfd -script "%~dp0IcemStartup.tcl"
 rem "%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\icemcfd" -script "%~dp0IcemStartup.tcl"
 
@@ -74,7 +74,7 @@ rem "%ICEMCFD_BAT%" -script "%TCL_HOME%/IcemStartup/IcemStartup.tcl"
 goto Exit
 
 :Error
-echo Ошибка! Неправильно выбран номер
+echo ERROR! Wrong number
 pause
 
 :Exit
