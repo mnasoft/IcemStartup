@@ -1,16 +1,32 @@
 # source $env(TCL_HOME)/IcemStartup/IcemRequire.tcl
 
+## * Команды [[file../IcemRequire.tcl]]
 # Данный файл выполняется в графическом пространстве имен.
 
-set DEBUG off; # Включение отладочных сообщений on (отключение off)
+## ** Глобальные переменные - =DEBUG= :: Управляет выводом отладочных
+## сообщений:
+
+## - DEBUG = 1 (или on) - вывод отладочных сообщений в консоль
+##   осуществляется;
+## - DEBUG = 0 (или off) - вывод отладочных сообщений в консоль
+##   не осуществляется;
+set DEBUG off; 
 
 mmsg_start
 
+## - =loadInGuiSpace {}= :: Добавляет пути в переменую =auto_path= в
+##   графическом пространстве имен ICEM CFD.
 proc loadInGuiSpace {} {
+    global auto_path
+    dmsg "00012: $PkgLoader::Tcl_User_Root\n"
+    lappend auto_path $PkgLoader::Tcl_User_Root/tooltip
+    dmsg "00013: $auto_path\n"
+    package require tooltip
+    
     # Добавлям пути в переменную PkgLoaderDirs пакета PkgLoader.
     PkgLoader::addSubDir ICEM
     PkgLoader::addDir MnasTkUtils
-    
+
     dmsg "000\n"
 
     # Создаем файлы для загрузки пакетов по требованию.
