@@ -1,0 +1,33 @@
+* Назначение
+Пакет IcemStartup содержит файлы, позволяющие осуществить запуск
+ANSYS ICEM CFD на выполнение с загрузкой пользовательских меню и
+команд, расширяющих функции системы.
+
+Пакет IcemStartup встраивает в ANSYS ICEM CFD следующие пакеты:
+- [[https://github.com/mnasoft/MnasIcemUtils.git][MnasIcemUtils]] - пакет утилит для работы с ANSYS ICEM CFD;
+- [[https://github.com/mnasoft/N70_base.git][N70_base]] - пакет, содержащий глобальные настройки сетки для КС ДН70;
+- [[https://github.com/mnasoft/MnasTkUtils.git][MnasTkUtils]] - пакет, определяющий диалог для исследования окон. 
+
+* Файлы проекта
+#+begin_src sh
+  ls
+#+end_src
+
+#+RESULTS:
+| IcemRequire.tcl     |
+| IcemStartup.bat     |
+| IcemStartup.tcl     |
+| IcemStartup_new.tcl |
+| README.org          |
+| README.org~         |
+| ToDo.org            |
+| ToDo.org~           |
+
+1. IcemStartup.bat - batch-файл является точкой входа для запуска
+   ANSYS ICEM CFD.
+2. IcemStartup.tcl - вызавается в качестве параметра из
+   IcemStartup.bat. Осуществяет загрузку функций из скриптового
+   пространства в графическое.
+3. IcemRequire.tcl - выполняет загрузку библиотек и модифицирует меню
+   ICEM.
+4. IcemStartup_new.tcl - альтернативная нерабочая пока версия.
