@@ -4,9 +4,12 @@
 команд, расширяющих функции системы.
 
 Пакет IcemStartup встраивает в ANSYS ICEM CFD следующие пакеты:
-- [[https://github.com/mnasoft/MnasIcemUtils.git][=MnasIcemUtils=]] - пакет утилит для работы с ANSYS ICEM CFD;
-- [[https://github.com/mnasoft/N70_base.git][=N70_base=]] - пакет, содержащий глобальные настройки сетки для КС ДН70;
-- [[https://github.com/mnasoft/MnasTkUtils.git][=MnasTkUtils=]] - пакет, определяющий диалог для исследования окон.
+- [[../../ICEM/MnasIcemUtils/org/README.org][=MnasIcemUtils=]] - пакет утилит для работы с ANSYS ICEM CFD
+  (см. также github.com:[[https://github.com/mnasoft/MnasIcemUtils.git][=MnasIcemUtils.git=]]);
+- [[../../ICEM/N70_base/org/README.org][=N70_base=]] - пакет, содержащий глобальные настройки сетки для КС
+  ДН70 (см. также github.com:[[https://github.com/mnasoft/N70_base.git][=N70_base.git=]]);
+- [[../../MnasTkUtils/org/README.org][=MnasTkUtils=]] - пакет, определяющий диалог для исследования окон
+  (см. также github.com:[[https://github.com/mnasoft/MnasTkUtils.git][=MnasTkUtils.git=]]).
 
 * Сруктура каталогов
 ** Расположение пакетов в файловой системе
@@ -30,11 +33,11 @@ $ tree -d
 ├── PkgLoader
 #+end_src
 
-
 * Использование
 При успешной загрузке окно ANSYS ICEM CFD будет выглядеть следующий
 вид:
-[[file:images/icem_cfd.png]]
+
+[[../images/icem_cfd.png]]
 
 Воспользуйтесь меню Mnas, N70 или Navigator для вызова интересующих
 вас команд.
@@ -67,15 +70,12 @@ $ tree -d
 3. =IcemRequire.tcl= - выполняет загрузку библиотек и модифицирует меню
    ICEM.
 
-;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
 * Установка
 ** Зависимости
 Пакет IcemStartup непосредственно зависит от пакетов:
 - [[../../ICEM/MnasIcemUtils/org/README.org][=MnasIcemUtils=]] - утилиты для работы с ANSYS ICEM CFD;
 - [[../../ICEM/N70_base/org/README.org][=N70_base=]] - проект содержит глобальные настройки для генерирования сетки КС ДН70;
-- =MnasTkUtils= - диалог для исследования окон. 
+- [[../../MnasTkUtils/org/README.org][=MnasTkUtils=]] - диалог для исследования окон. 
 
 Для интегрирования в среду ANSYS ICEM CFD можно использовать пакет
 IcemStartup.
@@ -110,8 +110,10 @@ IcemStartup.
     #+end_src
 
 * Запуск ANSYS ICEM CFD
-Средствами операционной системы выполните файл icem.bat из пакета
-IcemStartup.
+Средствами операционной системы выполните файл IcemStartup.bat.
+
+Рекомендуется средствами опреционной системы создать ярлык на файл
+IcemStartup.bat и запускать на выполнение именно его.
 
 Примечание: при перемещении файла IcemStartup.bat в другой каталог
 загрузка и встраивание пакетов в среду ANSYS ICEM CFD успешной не
@@ -120,6 +122,7 @@ IcemStartup.
 #+begin_src cmd
   IcemStartup.bat
 #+end_src
+
 * Использование
 При успешной загрузке окно ANSYS ICEM CFD будет выглядеть следующий
 вид:
@@ -127,3 +130,7 @@ IcemStartup.
 
 Воспользуйтесь меню Mnas, N70 или Navigator для вызова интересующих
 вас команд.
+
+* Генерирование документации
+Для получения инструкций по автоматическому генерированию документации
+см. [[./publish/publish.org][publish.org]]
