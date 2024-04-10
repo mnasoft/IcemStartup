@@ -2,6 +2,8 @@
 
 # Данный файл выполняется в скриптовом пространстве имен.
 
+mess "Start Loading IcemStartup.tcl ...\n"
+
 # getAncestorDir - процедура для определения абсолютного пути к
 # каталогу-предку текущего файла TCL.
 # level - уровень предка (0 для родительского каталога, 1 для дедушки
@@ -25,3 +27,16 @@ proc loadToGuiSpace {} {
 }
 
 loadToGuiSpace
+
+set args [ic_argv]
+foreach {n v} $args {
+    set $n $v
+	mess "$n == $v\n"
+}
+set len [string length $projectfile]
+if {$len != 0} {
+    ic_load_project_file $projectfile
+    ic_gui_update
+}
+mess "IcemStartup.tcl - LOADED\n"
+
