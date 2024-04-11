@@ -60,9 +60,9 @@ goto IcemRun
 set ICEMCFD_BAT=%selected_val%
 echo 1 ICEMCFD_BAT=%ICEMCFD_BAT%
 
-echo  "IcemStartup" cmd.exe /K ""%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\icemcfd" -script "%~dp0IcemStartup.tcl""
+echo  "IcemStartup" cmd.exe /K ""%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\icemcfd" -script "%~dp0IcemStartup.tcl" "projectfile" %1"
 :: pause 
-start "IcemStartup" cmd.exe /K ""%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\icemcfd" -script "%~dp0IcemStartup.tcl""
+start "IcemStartup" cmd.exe /K ""%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\icemcfd" -script "%~dp0IcemStartup.tcl" "projectfile" %1"
 
 :: This way workable to.
 rem start "IcemStartup" /D "%ICEMCFD_BAT%\%ICEMCFD_SYSDIR%\bin\" icemcfd -script "%~dp0IcemStartup.tcl"
