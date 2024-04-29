@@ -1,6 +1,5 @@
 chcp 1251
 @echo off
-
 setlocal EnableDelayedExpansion
 
 :: Getting all evironment variable strting with ICEMCFD_ROOT
