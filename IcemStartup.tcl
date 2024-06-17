@@ -22,21 +22,24 @@ proc getAncestorDir {level} {
 # Загружает некоторые файлы в графическое пространство имен.
 proc loadToGuiSpace {} {
     set tcl_user_root [getAncestorDir 1]
-    ic_gui_set eval source $tcl_user_root/PkgLoader/PkgLoader.tcl
+    ic_gui_set eval lappend auto_path $tcl_user_root/PkgLoader
+    ic_gui_set eval package require PkgLoader
+
     ic_gui_set eval source $tcl_user_root/IcemStartup/IcemRequire.tcl
 }
 
 loadToGuiSpace
 
-set args [ic_argv]
-foreach {n v} $args {
-    set $n $v
-	mess "$n == $v\n"
-}
-set len [string length $projectfile]
-if {$len != 0} {
-    ic_load_project_file $projectfile
-    ic_gui_update
-}
+# set args [ic_argv]
+# foreach {n v} $args {
+#     set $n $v
+# 	mess "$n == $v\n"
+# }
+# set len [string length $projectfile]
+# if {$len != 0} {
+#     ic_load_project_file $projectfile
+#     ic_gui_update
+# }
+
 mess "IcemStartup.tcl - LOADED\n"
 

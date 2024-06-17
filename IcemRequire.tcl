@@ -17,36 +17,33 @@ mmsg_start
 ## - =loadInGuiSpace {}= :: Добавляет пути в переменую =auto_path= в
 ##   графическом пространстве имен ICEM CFD.
 proc loadInGuiSpace {} {
-    dmsg "loadInGuiSpace 000: START\n"
-    global auto_path
-    dmsg "loadInGuiSpace 003\n" 
-    # Добавлям пути в переменную PkgLoaderDirs пакета PkgLoader.
-    PkgLoader::addSubDir ICEM
-    PkgLoader::addDir MnasTkUtils
-    PkgLoader::addDir tooltip
-    dmsg "loadInGuiSpace 004\n"
-    # Добавляем содержимое переменной PkgLoader::Dirs в переменную auto_path
-    PkgLoader::addToAutoPath $PkgLoader::Dirs 
+    # Добавлям пути в глобальную переменную auto_path
+    PkgLoader::add_Auto [PkgLoader::searchSubDir ICEM]
+    PkgLoader::add_Auto [PkgLoader::abs_Path MnasTkUtils]
+    PkgLoader::add_Auto [PkgLoader::abs_Path tooltip]
     # Создаем файлы для загрузки пакетов по требованию.
     if { [is_debug_on] == 1 } {
-    dmsg "loadInGuiSpace 006: PkgLoader::createPkgIndex\n"         
+        # Добавлям пути в переменную PkgLoader::Dirs
+        PkgLoader::add_Dirs [PkgLoader::abs_Path PkgLoader]
+        PkgLoader::add_Dirs [PkgLoader::abs_Path MnasTkUtils]
+        PkgLoader::add_Dirs [PkgLoader::searchSubDir ICEM]
+        
         PkgLoader::createPkgIndex }
-    dmsg "loadInGuiSpace 005\n" 
     # Загружаем пакеты
     package require tooltip
     package require MnasIcemUtils
     package require N70_base
     package require MnasTkUtils
     dmsg "loadInGuiSpace 006\n" 
-    # Загружаем соответствующие меню
+    # Загружаем меню
     menu_MNAS
     menu_N70
     menu_WindowNavigator
     dmsg "loadInGuiSpace 007: END\n"     
 }
-dmsg "IcemRequire.tcl 000: START\n"
+
 loadInGuiSpace
-dmsg "IcemRequire.tcl 001: END\n"
+
 mmsg_finish
 
 set DEBUG off; 
