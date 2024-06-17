@@ -28,7 +28,8 @@ proc loadInGuiSpace {} {
         PkgLoader::add_Dirs [PkgLoader::abs_Path MnasTkUtils]
         PkgLoader::add_Dirs [PkgLoader::searchSubDir ICEM]
         
-        PkgLoader::createPkgIndex }
+        if {[catch { PkgLoader::createPkgIndex } err ]} {
+            dmsg "*** ERROR: $err" } }
     # Загружаем пакеты
     package require tooltip
     package require MnasIcemUtils
