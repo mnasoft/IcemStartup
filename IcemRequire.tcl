@@ -10,7 +10,7 @@
 ##   осуществляется;
 ## - DEBUG = 0 (или off) - вывод отладочных сообщений в консоль
 ##   не осуществляется;
-set DEBUG off
+set DEBUG on
 
 mmsg_start
 
@@ -28,18 +28,16 @@ proc loadInGuiSpace {} {
         PkgLoader::add_Dirs [PkgLoader::abs_Path MnasTkUtils]
         PkgLoader::add_Dirs [PkgLoader::searchSubDir ICEM]
         
-        if {[catch { PkgLoader::createPkgIndex } err ]} {
+        if {[catch { PkgLoader::i_pkg::create } err ]} {
             dmsg "*** ERROR: $err" } }
-    # Загружаем пакеты
+    # Загружаем пакет tooltip
     package require tooltip
-    package require MnasIcemUtils
-    package require N70_base
-    package require MnasTkUtils
     dmsg "loadInGuiSpace 006\n" 
-    # Загружаем меню
-    menu_MNAS
-    menu_N70
-    menu_WindowNavigator
+    # Загружаем пакеты и меню
+    package require MnasIcemUtils; menu_MNAS
+    package require N70_base; menu_N70
+    package require A32_base; menu_A32
+    package require MnasTkUtils; menu_WindowNavigator
     dmsg "loadInGuiSpace 007: END\n"     
 }
 
