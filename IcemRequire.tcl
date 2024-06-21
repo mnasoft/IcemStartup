@@ -10,9 +10,19 @@
 ##   осуществляется;
 ## - DEBUG = 0 (или off) - вывод отладочных сообщений в консоль
 ##   не осуществляется;
-set DEBUG on
+set DEBUG off 
 
 mmsg_start
+
+## - mk_index {} :: Создает индексные файлы для отдельных частей
+##   проекта.
+proc mk_index {} {
+    # Добавлям пути в переменную PkgLoader::Dirs
+    PkgLoader::add_Dirs [PkgLoader::abs_Path PkgLoader]
+    PkgLoader::add_Dirs [PkgLoader::abs_Path MnasTkUtils]
+    PkgLoader::add_Dirs [PkgLoader::searchSubDir ICEM]
+    if {[catch { PkgLoader::i_pkg::create } err ]} {
+        dmsg "*** ERROR: $err" } }
 
 ## - =loadInGuiSpace {}= :: Добавляет пути в переменую =auto_path= в
 ##   графическом пространстве имен ICEM CFD.
@@ -21,15 +31,8 @@ proc loadInGuiSpace {} {
     PkgLoader::add_Auto [PkgLoader::searchSubDir ICEM]
     PkgLoader::add_Auto [PkgLoader::abs_Path MnasTkUtils]
     PkgLoader::add_Auto [PkgLoader::abs_Path tooltip]
-    # Создаем файлы для загрузки пакетов по требованию.
-    if { [is_debug_on] == 1 } {
-        # Добавлям пути в переменную PkgLoader::Dirs
-        PkgLoader::add_Dirs [PkgLoader::abs_Path PkgLoader]
-        PkgLoader::add_Dirs [PkgLoader::abs_Path MnasTkUtils]
-        PkgLoader::add_Dirs [PkgLoader::searchSubDir ICEM]
-        
-        if {[catch { PkgLoader::i_pkg::create } err ]} {
-            dmsg "*** ERROR: $err" } }
+    # Создаем индексные файлы
+    mk_index
     # Загружаем пакет tooltip
     package require tooltip
     dmsg "loadInGuiSpace 006\n" 
