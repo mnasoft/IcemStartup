@@ -20,6 +20,7 @@ proc mk_index {} {
     # Добавлям пути в переменную PkgLoader::Dirs
     PkgLoader::add_Dirs [PkgLoader::abs_Path PkgLoader]
     PkgLoader::add_Dirs [PkgLoader::abs_Path MnasTkUtils]
+    PkgLoader::add_Dirs [PkgLoader::abs_Path Helper]
     PkgLoader::add_Dirs [PkgLoader::searchSubDir ICEM]
     if {[catch { PkgLoader::i_pkg::create } err ]} {
         dmsg "*** ERROR: $err" } }
@@ -31,6 +32,7 @@ proc loadInGuiSpace {} {
     PkgLoader::add_Auto [PkgLoader::searchSubDir ICEM]
     PkgLoader::add_Auto [PkgLoader::abs_Path MnasTkUtils]
     PkgLoader::add_Auto [PkgLoader::abs_Path tooltip]
+    PkgLoader::add_Auto [PkgLoader::abs_Path Helper]
     # Создаем индексные файлы
     mk_index
     # Загружаем пакет tooltip
@@ -41,6 +43,7 @@ proc loadInGuiSpace {} {
     package require N70_base; menu_N70
     package require A32_base; menu_A32
     package require MnasTkUtils; menu_WindowNavigator
+    package require Helper
     dmsg "loadInGuiSpace 007: END\n"     
 }
 
