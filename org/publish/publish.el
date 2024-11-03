@@ -4,7 +4,9 @@
   (setq fscluster-prefix "//fscluster/KO/Temp/Отд11/CFD/")
 ;;;;
   (cond
-   ((equal (system-name) "uakazi-note")
+   ((or
+     (equal (system-name) "uakazi-note")
+     (equal (system-name) "mnasoft-02"))
     (setq prefix local-prefix))
    (t (setq prefix n133906-prefix)))
 ;;;;

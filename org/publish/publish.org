@@ -5,3 +5,11 @@
 Примечание: предполагается, что проект расположен в каталоге
 [[~/devel/tcl/IcemStartup]]. Публикация проека осуществляется в каталог
 [[~/public_html/devel/tcl/IcemStartup/org/]].
+
+* Размещение на сайте                                              :noexport:
+#+begin_src sh
+  sudo cp -r ~/public_html/dev/tcl/IcemStartup /usr/share/nginx/html/
+#+end_src
+
+#+RESULTS:
+
