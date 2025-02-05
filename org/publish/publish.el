@@ -1,3 +1,4 @@
+;;;; ./org/publish/publish.el
 (progn
   (setq local-prefix "~/public_html/")
   (setq n133906-prefix "//n133906/home/_namatv/public_html/Site/CFD/")
