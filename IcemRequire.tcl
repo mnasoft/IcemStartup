@@ -39,7 +39,7 @@ proc loadInGuiSpace {} {
     package require tooltip
     dmsg "loadInGuiSpace 006\n" 
     # Загружаем пакеты и меню
-    package require MnasIcemUtils; menu_MNAS
+    package require MnasIcemUtils; menu_MNAS_pack_all
     package require N70_base; menu_N70
     package require A32_base; menu_A32
     package require MnasTkUtils; menu_WindowNavigator
