@@ -1,19 +1,8 @@
 ;;;; ./org/publish/publish.el
 (progn
-  (setq local-prefix "~/public_html/")
-  (setq n133906-prefix "//n133906/home/_namatv/public_html/Site/CFD/")
-  (setq fscluster-prefix "//fscluster/KO/Temp/Отд11/CFD/")
-;;;;
-  (cond
-   ((or
-     (equal (system-name) "uakazi-note")
-     (equal (system-name) "mnasoft-02"))
-    (setq prefix local-prefix))
-   (t (setq prefix n133906-prefix)))
-;;;;
-  (setq prj-root
-        (get-ancestor-directory-name (get-relative-path (buffer-file-name)) 3))
-
+  (org-setup "CFD" (home-ancestor 2) :remote-prefix "//n133906/home/_namatv/public_html/Site/") ;; (:prj-root "dev/tcl/ICEM/MnasIcemUtils" :prefix "//n133906/home/_namatv/public_html/Site/CFD/")
+  ;; (org-setup "CFD" (home-ancestor 2) :remote-prefix "//fscluster/KO/Temp/Отд11/") 
+ 
   (setq org-publish-project-alist
         `(
           ,(org-pub-list "pub"          "org/publish")
