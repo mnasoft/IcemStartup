@@ -1,7 +1,8 @@
 ;;;; ./org/publish/publish.el
 (progn
-  ;; (org-setup "CFD" (home-ancestor 2) :remote-prefix "//n133906/home/_namatv/public_html/Site/") ;; (:prj-root "dev/tcl/ICEM/MnasIcemUtils" :prefix "//n133906/home/_namatv/public_html/Site/CFD/")
-  (org-setup "ICEM_tcl" (home-ancestor 2) :pub-dir-deep 2 :remote-prefix "//fscluster/CAD-CAM/OAKTC_Programs/ANSYS/")   
+  ;;(org-setup "//n133906/home/_namatv/public_html/Site/CFD/dev/tcl" (home-ancestor 2))
+  ;;(org-setup "//fscluster/CAD-CAM/OAKTC_Programs/ANSYS/ICEM_tcl" (home-ancestor 2))
+  (org-setup "~/public_html/ICEM_tcl" (home-ancestor 2))  
  
   (setq org-publish-project-alist
         `(
